@@ -11,6 +11,7 @@ from .scraper_betexplorer import scraper_betexplorer
 from .aliases import *
 from .utils import *
 
+module_path = '/'.join(__file__.split('/')[:-1])
 
 def get_match_data(d):
     '''
@@ -163,28 +164,28 @@ def load_match_links(max = 200):
 
     # try to load match data dataframe for today
     try:
-        df = pd.read_csv('app/scraper/data/match_data/' + d + '.csv')
+        df = pd.read_csv(module_path + '/data/match_data/' + d + '.csv')
         df = df[['Link', 'Date', 'Sport']]
     # if there isn't one in our database, fetch it from the site
     except:
         match_data = get_match_data(date)
-        save_data(match_data, 'app/scraper/data/match_data/')
+        save_data(match_data, module_path + '/data/match_data/')
         df = pd.DataFrame(match_data)[['Link', 'Date', 'Sport']]
 
         # denote that there are pending results for this day
         try:
-            pending_results = pd.read_csv('app/scraper/data/pending_results.csv', header=None)
+            pending_results = pd.read_csv(module_path + '/data/pending_results.csv', header=None)
             # to series
             pending_results = pending_results.iloc[:, 0]
         except:
             pending_results = pd.Series(dtype='object')
         
         pending_results = pd.concat([pending_results, pd.Series([d], dtype='object')])
-        pending_results.to_csv('app/scraper/data/pending_results.csv', index=False, header=False)
+        pending_results.to_csv(module_path + '/data/pending_results.csv', index=False, header=False)
     
     # try to load match data dataframe for tomorrow
     try:
-        df2 = pd.read_csv('app/scraper/data/match_data/' + d2 + '.csv')
+        df2 = pd.read_csv(module_path + '/data/match_data/' + d2 + '.csv')
         df2 = df2[['Link', 'Date', 'Sport']]
 
         # append
@@ -192,7 +193,7 @@ def load_match_links(max = 200):
     # if there isn't one in our database, fetch it from the site
     except:
         match_data = get_match_data(tomorrow)
-        save_data(match_data, 'app/scraper/data/match_data/', tomorrow)
+        save_data(match_data, module_path + '/data/match_data/', tomorrow)
         df2 = pd.DataFrame(match_data)[['Link', 'Date', 'Sport']]
 
         # append
@@ -200,14 +201,14 @@ def load_match_links(max = 200):
 
         # denote that there are pending results for this day
         try:
-            pending_results = pd.read_csv('app/scraper/data/pending_results.csv', header=None)
+            pending_results = pd.read_csv(module_path + '/data/pending_results.csv', header=None)
             # to series
             pending_results = pending_results.iloc[:, 0]
         except:
             pending_results = pd.Series(dtype='object')
         
         pending_results = pd.concat([pending_results, pd.Series([d2], dtype='object')])
-        pending_results.to_csv('app/scraper/data/pending_results.csv', index=False, header=False)
+        pending_results.to_csv(module_path + '/data/pending_results.csv', index=False, header=False)
 
     
     if df.empty:
@@ -270,7 +271,7 @@ def scrape_matches(match_links: dict) -> list:
     
     return all_bets
 
-def save_data(data, save_path = 'app/scraper/data/', date = None) -> None:
+def save_data(data, save_path = module_path + '/data/', date = None) -> None:
     '''
     Saves 'data' to 'save_path' in a csv file named 'Y_M_D.csv'
 
@@ -300,7 +301,7 @@ def save_data(data, save_path = 'app/scraper/data/', date = None) -> None:
 def fill_pending_results():
     date = datetime.now()
     try:
-        pending_results = pd.read_csv('app/scraper/data/pending_results.csv', header=None)
+        pending_results = pd.read_csv(module_path + '/data/pending_results.csv', header=None)
 
         # sort by date
         pending_results.columns = ['A']
@@ -319,10 +320,10 @@ def fill_pending_results():
     print("##### STARTED FILLING PENDING RESULTS; DO NOT EXIT")
     for datestr in pending_results[:3]:
         results = get_results(datestr)
-        save_data(results, 'app/scraper/data/results/', str2date(datestr))
+        save_data(results, module_path + '/data/results/', str2date(datestr))
     pending_results = pending_results[3:] + pending_results1 # delete fetched results from the pending list
     
-    pd.Series(pending_results, dtype='object').to_csv('app/scraper/data/pending_results.csv', index=False, header=False)
+    pd.Series(pending_results, dtype='object').to_csv(module_path + '/data/pending_results.csv', index=False, header=False)
     print("##### FINISHED FILLING PENDING RESULTS")
 
 

@@ -1,10 +1,10 @@
 import pandas as pd
 from time import time
 
-import app.bet_algorithm.data_loading as data_loading
-import app.bet_algorithm.preprocessing as preprocessing
-import app.bet_algorithm.event_collections as event_collections
-import app.bet_algorithm.utils as utils
+import betting_assistant.bet_algorithm.data_loading as data_loading
+import betting_assistant.bet_algorithm.preprocessing as preprocessing
+import betting_assistant.bet_algorithm.event_collections as event_collections
+import betting_assistant.bet_algorithm.utils as utils
 
 
 if __name__ == "__main__":
