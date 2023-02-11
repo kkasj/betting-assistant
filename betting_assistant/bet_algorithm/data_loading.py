@@ -4,8 +4,10 @@ from datetime import datetime
 from typing import List, Optional
 
 from .utils import datetime2str_dbformat
-from ..scraper.scraper_main import scraper_runner
+from ..scraper import scraper_main
 
+
+scraper_package_path = '/'.join(scraper_main.__file__.split('\\')[-3:-1])
 
 class Loader:
     """
@@ -39,7 +41,7 @@ class Loader:
         dfs = []
         for day in self.days:
             try:
-                match_data = pd.read_csv('app/scraper/data/match_data/' + day + '.csv')
+                match_data = pd.read_csv(scraper_package_path + '/data/match_data/' + day + '.csv')
                 match_data.index = match_data["ID"]
                 match_data = match_data.drop(columns=["ID"])
 
@@ -60,7 +62,7 @@ class Loader:
         dfs = []
         for day in self.days:
             try:
-                results = pd.read_csv('app/scraper/data/results/' + day + '.csv')
+                results = pd.read_csv(scraper_package_path + '/data/results/' + day + '.csv')
                 results.index = results["ID"]
                 results = results.drop(columns=["ID"])
 
@@ -164,7 +166,7 @@ class DBLoader(Loader):
         dfs = []
         for day in self.days:
             try:
-                odds = pd.read_csv('app/scraper/data/odds/' + day + '.csv')
+                odds = pd.read_csv(scraper_package_path + '/data/odds/' + day + '.csv')
 
                 dfs.append(odds)
             except FileNotFoundError:
@@ -187,5 +189,5 @@ class ScraperDataLoader(Loader):
         Load odds directly from the scraper
         """
 
-        odds_list = scraper_runner(max = 5)
+        odds_list = scraper_main.scraper_runner(max = 5)
         return pd.DataFrame(odds_list)

@@ -13,7 +13,7 @@ if __name__ == "__main__":
     t = time()
 
     loader = data_loading.DBLoader(days=['2022_9_28'])
-    loader = data_loading.DBLoader(days=utils.days_list_dbformat('2022_9_8', '2022_9_18'))
+    # loader = data_loading.DBLoader(days=utils.days_list_dbformat('2022_9_8', '2022_9_18'))
 
     events_df = loader.all_data
     # events_df = loader.all_data.iloc[:500]
