@@ -19,3 +19,7 @@ The betting algorithm implemented in the Assistant generalizes that idea for:
 * multiple bets at the same time,
 * bets overlapping in time,
 * multiple combination bets with shared events.
+
+
+## TODO
+* user-friendly interface
