@@ -8,7 +8,6 @@ A project aiming to provide an assistant tool for sports betting. It is not supp
 ### Using built-in odds data to test k-event combination bets overlapping in time
 ```python3
 import pandas as pd
-from time import time
 
 import betting_assistant.bet_algorithm.data_loading as data_loading
 import betting_assistant.bet_algorithm.preprocessing as preprocessing
