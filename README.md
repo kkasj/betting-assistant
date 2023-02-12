@@ -67,3 +67,4 @@ to provide the most accurate mathematical model of player's bet portfolio.
 * user-friendly interface
 * more elaborate code documentation
 * better exception handling
+* more usage examples
