@@ -4,6 +4,42 @@ A project aiming to provide an assistant tool for sports betting. It is not supp
 ## Dependencies
 ```pip install -r requirements.txt```
 
+## Usage
+### Using built-in odds data to test k-event combination bets overlapping in time
+```python3
+import pandas as pd
+from time import time
+
+import betting_assistant.bet_algorithm.data_loading as data_loading
+import betting_assistant.bet_algorithm.preprocessing as preprocessing
+import betting_assistant.bet_algorithm.event_collections as event_collections
+import betting_assistant.bet_algorithm.utils as utils
+
+k = 2
+START_DATE = '2022_9_8'
+END_DATE = '2022_9_11'
+days_list = utils.days_list_dbformat(START_DATE, END_DATE)
+
+# load data from the database
+loader = data_loading.DBLoader(days=days_list)
+event_df = loader.all_data
+
+# preprocess
+event_df = preprocessing.start(events_df)
+
+# create a multi-event collection, which is a collection of events with k-event combination bet variables
+me = event_collections.MultiEventCollection.from_event_dataframe(event_df, k)
+
+# calculate utility function separately for each day
+utility_by_day = me.overlap_utility_grouped_by_day()
+
+# or, if you wish, calculate the aggregate utility function across all days
+agg_utility = me.overlap_utility()
+
+print(utility_by_day)
+print(agg_utility)
+```
+
 ## How it works
 If you are a bettor, all you need to do is to feed the tool with bet type and odds. What kind of odds? That is up to you.
 
@@ -30,3 +66,4 @@ to provide the most accurate mathematical model of player's bet portfolio.
 ## TODO
 * user-friendly interface
 * more elaborate code documentation
+* better exception handling
