@@ -1,6 +1,9 @@
 # Betting Assistant
 A project aiming to provide an assistant tool for sports betting. It is not supposed to make betting decisions for you, but it will give you better advice than most tipsters out there.
 
+## Dependencies
+```pip install -r requirements.txt```
+
 ## How it works
 If you are a bettor, all you need to do is to feed the tool with bet type and odds. What kind of odds? That is up to you.
 
@@ -26,3 +29,4 @@ to provide the most accurate mathematical model of player's bet portfolio.
 
 ## TODO
 * user-friendly interface
+* more elaborate code documentation
