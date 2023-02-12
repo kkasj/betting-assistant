@@ -11,9 +11,9 @@ session = requests.Session()
 
 
 def get_flashscore_odds(http_response: str) -> dict:
-    '''
+    """
     Processes scraped http response to provide odds in a list of dictionaries.
-    '''
+    """
 
     match_id = http_response['match_id']
     text = http_response['text']
@@ -145,12 +145,12 @@ def get_flashscore_odds(http_response: str) -> dict:
 
 
 def http_flashscore_odds(match_id: str, sport: str) -> dict:
-    '''
+    """
     Request polish odds from flashscore.pl.
     
     Sends an http request to flashscore.pl to obtain polish odds for a match with 'match_id', playing 'sport'. 
     Returns a dictionary of three keys {"match_id", "text", "sport"}, where "text" is the text response of the site.
-    '''
+    """
 
     url = "https://d.flashscore.pl/x/feed/df_od_1_" + match_id
     text = session.get(url, headers = {
@@ -176,13 +176,13 @@ def http_flashscore_odds(match_id: str, sport: str) -> dict:
 
 
 def scraper_flashscore(match_ids: List[str], sport: str) -> dict:
-    '''
+    """
     Scrapes and compiles odds for every match in 'match_ids' playing 'sport'
 
     Uses 'http_flashscore_odds()' to get polish odds for every match in 'match_ids' playing 'sport'. 
     Then uses 'get_flashscore_odds()' to organize the odds into a dictionary {'match_id': 'odds'}, 
     where 'odds' is the dictionary returned by 'get_flashscore_odds()' for 'match_id'. 
-    '''
+    """
 
     CONNECTIONS = 3
 

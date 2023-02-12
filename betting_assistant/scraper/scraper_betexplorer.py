@@ -16,9 +16,9 @@ bookie_ids = [207, 1039, 11, 102, 147, 25, 148, 41, 43, 45, 241]
 bookmakers = ['10Bet','1xBet','bet365','bet-at-home','BetVictor','Pinnacle','William Hill','Betway','Unibet','Interwetten','Betsson']
 
 def http_match_data(betexplorer_link):
-    '''
-    OBSOLETE
-    '''
+    """
+    deprecated
+    """
     text = session.get(betexplorer_link, headers = {
             "authority": "www.betexplorer.com",
             "method": "GET",
@@ -38,12 +38,12 @@ def http_match_data(betexplorer_link):
     return betexplorer_link, match_data_soup
 
 def http_betexplorer_odds(betexplorer_link: str, bet_type: str) -> tuple:
-    '''
+    """
     Request odds from betexplorer.com
     
     Sends an http request to betexplorer.com to obtain polish 'bet_type' odds for a match on 'betexplorer_link'. 
     Returns a tuple of three elements ("match_id", "bet_type", "odds_soup"), where "odds_soup" is the text response of the site.
-    '''
+    """
 
     match_id = betexplorer_link[-9:-1]
     url = 'https://www.betexplorer.com/match-odds/' + match_id + '/0/' + bet_type + '/'
@@ -71,9 +71,9 @@ def http_betexplorer_odds(betexplorer_link: str, bet_type: str) -> tuple:
 
 
 def get_betexplorer_odds(http_response: str, bt_values: List[int]) -> dict: # bet type values
-    '''
+    """
     Processes scraped http response from betexplorer to provide a list of dictionaries of odds for a given match, bet type and bet type values (bet type arguments)
-    '''
+    """
 
     match_id, bet_type, soup = http_response
     d = datetime.now()
@@ -143,11 +143,11 @@ def get_betexplorer_odds(http_response: str, bt_values: List[int]) -> dict: # be
 
     
 def scraper_betexplorer(match_ids: list, betexplorer_links: dict, flashscore_odds: dict, match_bet_types: dict, sports: list) -> list:
-    '''
+    """
     Appends flashscore-scraped polish odds by odds from betexplorer for matches in 'match_ids' playing 'sport'
 
     Returns a list of bets.
-    '''
+    """
     CONNECTIONS = 6
 
     all_bets = []

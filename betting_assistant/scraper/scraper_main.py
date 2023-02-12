@@ -14,9 +14,9 @@ from .utils import *
 package_path = '/'.join(__file__.split('\\')[-3:-1])
 
 def get_match_data(d):
-    '''
-    OBSOLETE
-    '''
+    """
+    deprecated
+    """
 
     # d = datetime.now()
     # tomorrow = d + timedelta(days=1)
@@ -147,11 +147,11 @@ def get_results(datestr):
     return results
 
 def load_match_links(max = 200):
-    '''
+    """
     Scrapes links and match info for 'max' matches on betexplorer.com and saves them in the database  
 
     Returns the links in the form of a dictionary {sport: links for matches in sport}.
-    '''
+    """
 
     date = datetime.now()
     tomorrow = date + timedelta(days=1)
@@ -235,9 +235,9 @@ def load_match_links(max = 200):
     return match_links
 
 def scrape_matches(match_links: dict) -> list:
-    '''
+    """
     Scrapes matches in 'match_links'
-    '''
+    """
 
     # create match_ids and betexplorer_links dictionaries:
     # match_ids = {sport: list of match ids}
@@ -268,11 +268,11 @@ def scrape_matches(match_links: dict) -> list:
     return all_bets
 
 def save_data(data, save_path = package_path + '/data/', date = None) -> None:
-    '''
+    """
     Saves 'data' to 'save_path' in a csv file named 'Y_M_D.csv'
 
     For the function to work properly, 'data' must be convertible to a pandas DataFrame.
-    '''
+    """
 
     if date is None: # if no date is given
         date = datetime.now()
@@ -324,9 +324,9 @@ def fill_pending_results():
 
 
 def scrape(max = 200) -> list:
-    '''
+    """
     Scrapes 'max' matches and returns compiled odds
-    '''
+    """
 
     match_links = load_match_links(max)
 
