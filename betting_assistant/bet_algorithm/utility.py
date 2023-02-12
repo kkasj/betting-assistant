@@ -47,16 +47,16 @@ class CollectiveUtilityOptimizer:
         self.event = event
 
         self.unique_bet_ids = {bet_id for e in ongoing_events+[event] for bet_id in e.bet_id}
-        self.basis = {bet_id: count for count, bet_id in enumerate(self.unique_bet_ids)} # maps to the index of the outcome in the cartesian product tuple
+        self.basis = {bet_id: count for count, bet_id in enumerate(self.unique_bet_ids)} # values give the order of axes for prt
         self.basis_n = {bet_id: e.n for me in ongoing_events+[event] for bet_id, e in zip(me.bet_id, me.get_events())}
         self.broadcast_shape = tuple(map(lambda x: self.basis_n[x], self.basis))
         self.basis_probabilities = {bet_id: e.probabilities for me in ongoing_events+[event] for bet_id, e in zip(me.bet_id, me.get_events())}
         self.probabilities_list = list(map(lambda x: self.basis_probabilities[x], self.basis))
+        self.probabilities = self.create_probability_tensor()
 
         # total budget - sizes of ongoing bets included
         self.total_budget = self.event.retrieval_budget + np.sum([e.retrieval_budget * e.s.sum() for e in self.ongoing_events])
         self.current_bet_size = np.sum([e.retrieval_budget/self.total_budget * np.sum(e.s) for e in self.ongoing_events])
-        self.probabilities = self.create_probability_tensor()
 
         self.ongoing_diff_to_basis = [self.unique_bet_ids - set(e.bet_id) for e in ongoing_events]
         self.event_diff_to_basis = self.unique_bet_ids - set(self.event.bet_id)

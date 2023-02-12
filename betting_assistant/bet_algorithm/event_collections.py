@@ -45,6 +45,7 @@ class GenericEventCollection:
         current_bet_count = 0
         bet_id_map_event = defaultdict(list)
         DEBUG = True
+        MAX_ENTANGLED = 20
         def handle_row(row):
             nonlocal budget, bet_id_map_event, current_bet_count
             action = row["Action"]
@@ -59,7 +60,6 @@ class GenericEventCollection:
                 bet_id = event.bet_id
 
                 events_with_common_bet_id = set()
-                MAX_ENTANGLED = 20
                 for bid in bet_id:
                     for e in bet_id_map_event[bid]:
                         if len(events_with_common_bet_id) == MAX_ENTANGLED:

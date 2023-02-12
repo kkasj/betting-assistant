@@ -187,7 +187,7 @@ def prepare_rows(data: pd.DataFrame) -> pd.DataFrame:
 
     return data
 
-def rows_to_events(data: pd.DataFrame) -> pd.DataFrame:
+def rows_to_event_format(data: pd.DataFrame) -> pd.DataFrame:
     data = separate_bookmakers(data)
     data = filter_invalid_odds(data)
     data = add_var2outcome_column(data)
@@ -200,7 +200,7 @@ def rows_to_events(data: pd.DataFrame) -> pd.DataFrame:
 
 def start(data: pd.DataFrame) -> pd.DataFrame:
     data = prepare_rows(data)
-    data = rows_to_events(data)
+    data = rows_to_event_format(data)
     data = create_events(data)
     data = index_by(data, levels=["Retrieval date", "Bookmaker", "ID", "Bet type", "Bet type value"])
     data = sort_by_index(data, 'Retrieval date')
