@@ -36,7 +36,7 @@ class UtilityOptimizer:
         s = result.x.reshape((-1,))
         s *= s>0.01 # discard small bet sizes
 
-        if self.expected_log_utility(s) <= 10**(-6):
+        if self.expected_log_utility(s) <= 1e-6:
             return np.array([0 for _ in range(self.event.m)]).reshape(self.event.varshape)
         
         return s.reshape(self.event.varshape)
@@ -124,7 +124,7 @@ class CollectiveUtilityOptimizer:
         s = result.x
         s *= s>0.01 # discard small bet sizes
 
-        if self.expected_log_utility(s) <= self.expected_ongoing_log_utility + 10**(-6):
+        if self.expected_log_utility(s) <= self.expected_ongoing_log_utility + 1e-6:
             return np.array([0 for _ in range(self.event.m)]).reshape(self.event.varshape)
 
         s *= self.total_budget/self.event.retrieval_budget 
