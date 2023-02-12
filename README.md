@@ -4,7 +4,7 @@ A project aiming to provide an assistant tool for sports betting. It is not supp
 ## Dependencies
 ```pip install -r requirements.txt```
 
-## Usage
+## Code example
 ### Using built-in odds data to test k-event combination bets overlapping in time
 ```python3
 import pandas as pd
