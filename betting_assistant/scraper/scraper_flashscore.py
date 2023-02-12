@@ -167,7 +167,7 @@ def http_flashscore_odds(match_id: str, sport: str) -> dict:
                 "sec-fetch-mode": "cors",
                 "sec-fetch-site": "same-origin",
                 "sec-gpc": "1",
-                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Safari/537.36 OPR/89.0.4447.64",
+                "user-agent": "Mozilla/5.0",
                 "x-fsign": "SW9D1eZo"
                 }).text
 

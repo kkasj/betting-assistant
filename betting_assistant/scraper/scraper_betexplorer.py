@@ -27,12 +27,10 @@ def http_match_data(betexplorer_link):
             "referer": "https://www.google.com/",
             "accept-encoding": "gzip, deflate, br",
             "accept-language": "pl-PL,pl;q=0.9,en-US;q=0.8,en;q=0.7",
-            "sec-ch-ua": '"Opera GX";v="89", "Chromium";v="103", "_Not:A-Brand";v="24"',
-            "sec-ch-ua-platform": "Windows",
             "sec-fetch-dest": "document",
             "sec-fetch-mode": "navigate",
             "sec-fetch-site": "same-origin",
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Safari/537.36 OPR/89.0.4447.64",
+            "user-agent": "Mozilla/5.0",
         }).text
     
     match_data_soup = BeautifulSoup(text, 'lxml')
@@ -58,12 +56,10 @@ def http_betexplorer_odds(betexplorer_link: str, bet_type: str) -> tuple:
             "referer": "https://www.google.com/",
             "accept-encoding": "gzip, deflate, br",
             "accept-language": "pl-PL,pl;q=0.9,en-US;q=0.8,en;q=0.7",
-            "sec-ch-ua": '"Opera GX";v="89", "Chromium";v="103", "_Not:A-Brand";v="24"',
-            "sec-ch-ua-platform": "Windows",
             "sec-fetch-dest": "empty",
             "sec-fetch-mode": "cors",
             "sec-fetch-site": "same-origin",
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Safari/537.36 OPR/89.0.4447.64",
+            "user-agent": "Mozilla/5.0",
             "x-requested-with": "XMLHttpRequest",
         }).text.replace("\\", "")
 

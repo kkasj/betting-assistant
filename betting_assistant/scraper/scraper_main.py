@@ -39,12 +39,10 @@ def get_match_data(d):
             "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
             "accept-encoding": "gzip, deflate, br",
             "accept-language": "pl-PL,pl;q=0.9,en-US;q=0.8,en;q=0.7",
-            "sec-ch-ua": '"Opera GX";v="89", "Chromium";v="103", "_Not:A-Brand";v="24"',
-            "sec-ch-ua-platform": "Windows",
             "sec-fetch-dest": "empty",
             "sec-fetch-mode": "cors",
             "sec-fetch-site": "same-origin",
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Safari/537.36 OPR/89.0.4447.64",
+            "user-agent": "Mozilla/5.0",
             }).text
 
             soup = BeautifulSoup(h, 'lxml')
@@ -102,12 +100,10 @@ def get_results(datestr):
             "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
             "accept-encoding": "gzip, deflate, br",
             "accept-language": "pl-PL,pl;q=0.9,en-US;q=0.8,en;q=0.7",
-            "sec-ch-ua": '"Opera GX";v="89", "Chromium";v="103", "_Not:A-Brand";v="24"',
-            "sec-ch-ua-platform": "Windows",
             "sec-fetch-dest": "empty",
             "sec-fetch-mode": "cors",
             "sec-fetch-site": "same-origin",
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Safari/537.36 OPR/89.0.4447.64",
+            "user-agent": "Mozilla/5.0",
             }).text
 
             soup = BeautifulSoup(h, 'lxml')
