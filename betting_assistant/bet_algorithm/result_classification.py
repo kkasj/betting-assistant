@@ -4,12 +4,9 @@ from typing import List, Optional
 eps = 0.01
 
 def float_equals(a, b):
-    if abs(a-b) <= eps:
-        return True
-    else:
-        return False
+    return abs(a-b) <= eps:
 
-
+    
 class ResultClassifier:
     bet_type_variables = [['1', 'x', '2'], # 1x2
                             ['over', 'under'], # under-over
