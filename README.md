@@ -51,7 +51,7 @@ After you give it the odds and type of each available bet you want to process, t
 * return the suggested sizes of bets as a fraction of the budget at your disposal.
 
 ## Why it works
-Most methods for systematic winning in sports betting are based upon bet *value*, which is a fancy alias for the criterion $$\text{probability} \times \text{odds} > 1,$$ which basically serves as an elementary filtering device, leaving only profitable bets. To determine the bet size, they strive to maximize the expected value of a simple logarithmic [utility function](https://en.wikipedia.org/wiki/Utility). For example, a simple 1x2 bet has expected utility: $$E(u(s_1, s_2, s_3)) = \sum_{i=1}^{n} p_i\cdot \log(1+c_i\cdot s_i - (s_1 + s_2 + s_3))$$
+Most methods for systematic winning in sports betting are based upon bet *value*, which is a fancy alias for the criterion $$\text{probability} \times \text{odds} > 1,$$ which basically serves as an elementary filtering device, leaving only profitable bets. To determine the bet size, they strive to maximize the expected value of a simple logarithmic [utility function](https://en.wikipedia.org/wiki/Utility). For example, a simple 1x2 bet has expected utility: $$E(u(s_1, s_2, s_3)) = \sum_{i=1}^{3} p_i\cdot \log(1+c_i\cdot s_i - (s_1 + s_2 + s_3))$$
 
 The betting algorithm implemented in the Assistant generalizes that idea for:
 * arbitrary bet structure (winning bet variable-to-outcome matrix),
